@@ -1,4 +1,5 @@
 class TicTacToeGame
+  attr_accessor :current_player
 
   def initialize(game_board, check_winner)
     @game_board = game_board
@@ -18,5 +19,9 @@ class TicTacToeGame
 
   def switch_players
     @current_player = @current_player == 'x' ? 'o' : 'x'
+  end
+
+  def win?
+    CheckWinner.new(board, @current_player).win?
   end
 end

@@ -6,5 +6,4 @@ describe GameBoard do
       expect(GameBoard.new.board).to eq(Array.new(9, '-'))
     end
   end
-
 end
