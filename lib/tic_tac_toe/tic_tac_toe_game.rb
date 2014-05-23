@@ -24,4 +24,9 @@ class TicTacToeGame
   def win?
     CheckWinner.new(board, @current_player).win?
   end
+
+  def clear
+    @game_board = GameBoard.new
+    @current_user = 'x'
+  end
 end

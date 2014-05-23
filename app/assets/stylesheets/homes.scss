@@ -7,36 +7,36 @@ input {
 }
 
 .grid {
-  display: inline-block;   
-  padding: 10px;           
+  display: inline-block;
+  padding: 10px;
 }
 
-#row_one, #row_status {    
+#row_one, #row_status {
   margin-top: 50px;
 }
 
-.center {                  
-  margin-left: auto;       
-  margin-right: auto;      
+.center {
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
 }
 
-// Tic Tac Toe Grid        
+// Tic Tac Toe Grid
 .v_bars {
   border-right: $border_size;
   border-left: $border_size;
 }
 
-.h_bars {                  
+.h_bars {
   border-top: $border_size;
   border-bottom: $border_size;
 }
 
 .box_1 {
-  @extend .v_bars;         
+  @extend .v_bars;
 }
 
-.box_3, .box_5 {           
+.box_3, .box_5 {
   @extend .h_bars;
 }
 

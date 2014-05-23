@@ -6,4 +6,9 @@ class HomesController < ApplicationController
     GAME.move(params[:id][/\d/].to_i)
     redirect_to root_path
   end
+
+  def restart_game
+    GAME.clear
+    redirect_to root_path
+  end
 end
