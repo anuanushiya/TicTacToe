@@ -1,0 +1,4 @@
+%div.col-md-4.col-md-offset-4
+  = form_tag root_path, id: 'game_form', method: 'get', remote: true do
+    %div#game_board
+      = render 'game_board'

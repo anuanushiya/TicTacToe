@@ -1,0 +1,49 @@
+$border-size: 5px solid black;
+
+input {
+  width: 100px;
+  height: 100px;
+  font-size: 90px;
+}
+
+.grid {
+  display: inline-block;   
+  padding: 10px;           
+}
+
+#row_one, #row_status {    
+  margin-top: 50px;
+}
+
+.center {                  
+  margin-left: auto;       
+  margin-right: auto;      
+  text-align: center;
+}
+
+// Tic Tac Toe Grid        
+.v_bars {
+  border-right: $border_size;
+  border-left: $border_size;
+}
+
+.h_bars {                  
+  border-top: $border_size;
+  border-bottom: $border_size;
+}
+
+.box_1 {
+  @extend .v_bars;         
+}
+
+.box_3, .box_5 {           
+  @extend .h_bars;
+}
+
+.box_4 {
+  @extend .v_bars, .h_bars
+}
+
+.box_7 {
+  @extend .v_bars
+}
