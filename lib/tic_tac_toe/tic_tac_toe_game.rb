@@ -18,17 +18,8 @@ class TicTacToeGame
     @game_board.board
   end
 
-  def switch_turn
-    @current_player = @current_player == 'x' ? 'o' : 'x'
-  end
-
   def win?(player = previous_player)
     @check_winner.new(board, player).win?
-  end
-
-  def clear
-    @game_board = GameBoard.new
-    @current_player = 'x'
   end
 
   def computer_move
@@ -41,5 +32,16 @@ class TicTacToeGame
 
   def remaining_moves
     @game_board.remaining_indices_count
+  end
+
+  def clear
+    @game_board = GameBoard.new
+    @current_player = 'x'
+  end
+
+  private
+
+  def switch_turn
+    @current_player = @current_player == 'x' ? 'o' : 'x'
   end
 end
