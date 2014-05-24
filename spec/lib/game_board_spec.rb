@@ -13,7 +13,7 @@ describe GameBoard do
       game.move(0, 'x')
       game.move(1, 'o')
       game.move(8, 'x')
-      expect(game.remaining_indices).to eq([2,3,4,5,6,7])
+      expect(game.remaining_indices).to eq([2, 3, 4, 5, 6, 7])
     end
   end
 end

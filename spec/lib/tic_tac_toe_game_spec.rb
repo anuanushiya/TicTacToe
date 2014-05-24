@@ -16,7 +16,7 @@ describe TicTacToeGame do
       expect(@game.board).to eq(Array.new(9, '-'))
     end
   end
-  
+
   describe '#move' do
     it "returns %w(x - - - - - - - -) when move(0) is called" do
       expect(@game.move(0)).to eq(%w(x - - - - - - - -))

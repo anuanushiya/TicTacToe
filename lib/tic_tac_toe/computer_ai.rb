@@ -17,7 +17,7 @@ class ComputerAI
   private
 
   def computer_win
-    winning_move = @game_board.remaining_indices.select do |move| 
+    winning_move = @game_board.remaining_indices.select do |move|
       @game_board.move(move, 'o')
       win = @check_winner.new(@game_board.board, @turn).win?
       return_board
@@ -27,7 +27,7 @@ class ComputerAI
   end
 
   def stop_human_win
-    stop_human_move = @game_board.remaining_indices.select do |move| 
+    stop_human_move = @game_board.remaining_indices.select do |move|
       @game_board.move(move, 'x')
       win = @check_winner.new(@game_board.board, human_player).win?
       return_board
