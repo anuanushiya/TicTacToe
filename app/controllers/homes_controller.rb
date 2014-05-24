@@ -12,7 +12,7 @@ class HomesController < ApplicationController
 
   def update_game_board
     GAME.move(params[:id][/\d/].to_i)
-    redirect_to root_path and return
+    redirect_to root_path
   end
 
   def restart_game

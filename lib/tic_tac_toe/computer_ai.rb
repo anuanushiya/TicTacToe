@@ -11,7 +11,12 @@ class ComputerAI
   end
 
   def best_move
-    computer_win || stop_human_win || play_center || play_corner || play_side || 0
+    if @game_board.board[0] == human_player || @game_board.board[2] == human_player ||
+      @game_board.board[6] == human_player || @game_board.board[8] == human_player
+      computer_win || stop_human_win || play_center || play_side || play_corner || 0
+    else
+      computer_win || stop_human_win || play_center || play_corner || play_side || 0
+    end
   end
 
   private

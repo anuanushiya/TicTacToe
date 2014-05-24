@@ -8,7 +8,7 @@ describe TicTacToeGame do
     gameboard = GameBoard.new
     check_winner = CheckWinner
     computer = ComputerAI
-    @game = TicTacToeGame.new(gameboard, check_winner, ComputerAI)
+    @game = TicTacToeGame.new(gameboard, check_winner, computer)
   end
 
   describe '#board' do
