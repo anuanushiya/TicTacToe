@@ -18,6 +18,6 @@ class CheckWinner
 
   def diagonal_win?
     @board.map.with_index.all? { |row, ind| row[ind] == @player} ||
-    @board.map.with_index.all? { |row, ind| row[2 - ind] == @player}
+      @board.map.with_index.all? { |row, ind| row[2 - ind] == @player}
   end
 end

@@ -28,7 +28,7 @@ class TicTacToeGame
 
   def clear
     @game_board = GameBoard.new
-    @current_player= 'x'
+    @current_player = 'x'
   end
 
   def computer_move

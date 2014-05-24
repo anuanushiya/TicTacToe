@@ -65,4 +65,5 @@ describe TicTacToeGame do
       @game = TicTacToeGame.new(game_board, CheckWinner, ComputerAI)
       expect(@game.computer_move).to eq([2])
     end
+  end
 end
