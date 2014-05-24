@@ -27,6 +27,6 @@ class TicTacToeGame
 
   def clear
     @game_board = GameBoard.new
-    @current_user = 'x'
+    @current_player= 'x'
   end
 end
