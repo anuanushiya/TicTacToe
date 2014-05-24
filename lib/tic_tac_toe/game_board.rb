@@ -5,7 +5,12 @@ class GameBoard
   end
 
   def move(location, player)
-    @board[location] = player if @board[location] == '-'
+    if @board[location] == '-'
+    @board[location] = player
+    @board
+    else
+      nil
+    end
   end
 
   def remaining_indices

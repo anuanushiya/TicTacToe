@@ -1,1 +1,1 @@
-GAME = TicTacToeGame.new(GameBoard.new, CheckWinner)
+GAME = TicTacToeGame.new(GameBoard.new, CheckWinner, ComputerAI)

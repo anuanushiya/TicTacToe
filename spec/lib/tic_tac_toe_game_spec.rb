@@ -1,12 +1,14 @@
 require 'tic_tac_toe/tic_tac_toe_game'
 require 'tic_tac_toe/game_board'
 require 'tic_tac_toe/check_winner'
+require 'tic_tac_toe/computer_ai'
 
 describe TicTacToeGame do
   before do
     gameboard = GameBoard.new
     check_winner = CheckWinner
-    @game = TicTacToeGame.new(gameboard, check_winner)
+    computer = ComputerAI
+    @game = TicTacToeGame.new(gameboard, check_winner, ComputerAI)
   end
 
   describe '#board' do
@@ -34,25 +36,62 @@ describe TicTacToeGame do
   describe '#win' do
     it 'returns true when x wins' do
       game_board = double('GameBoard', board: %w(x x x o - o o - -))
-      @game = TicTacToeGame.new(game_board, CheckWinner)
-      expect(@game.win?).to eq(true)
+      @game = TicTacToeGame.new(game_board, CheckWinner, ComputerAI)
+      expect(@game.win?('x')).to eq(true)
     end
 
     it 'returns true when o wins' do
       game_board = double('GameBoard', board: %w(o x x o - o o x -))
-      @game = TicTacToeGame.new(game_board, CheckWinner)
+      @game = TicTacToeGame.new(game_board, CheckWinner, ComputerAI)
       @game.current_player = 'o'
-      expect(@game.win?).to eq(true)
+      expect(@game.win?('o')).to eq(true)
     end
   end
 
   describe '#clear' do
     it 'resets the game board and sets the current_user to x' do
       game_board = double('GameBoard', board: %w(o x x o - o o x -))
-      @game = TicTacToeGame.new(game_board, CheckWinner)
+      @game = TicTacToeGame.new(game_board, CheckWinner, ComputerAI)
       expect(@game.board).to eq(%w(o x x o - o o x -))
       @game.clear
       expect(@game.board).to eq(%w(- - - - - - - - -))
+    end
+  end
+
+  describe '#computer_move' do
+    it 'returns a move that will allow the computer to win' do
+      game_board = GameBoard.new
+      game_board.board = %w(o o - x x - - - -)
+      @game = TicTacToeGame.new(game_board, CheckWinner, ComputerAI)
+      expect(@game.computer_move).to eq([2])
+    end
+
+    it 'returns a move that will allow the computer to win' do
+      game_board = GameBoard.new
+      game_board.board = %w(o - - o x - - - x)
+      @game = TicTacToeGame.new(game_board, CheckWinner, ComputerAI)
+      expect(@game.computer_move).to eq([6])
+    end
+
+    it 'returns a move that will not allow the human player to win' do
+      game_board = GameBoard.new
+      game_board.board = %w(x x - o - - - o -)
+      @game = TicTacToeGame.new(game_board, CheckWinner, ComputerAI)
+      expect(@game.computer_move).to eq([2])
+    end
+
+    it 'plays the center if the human player did not' do
+      game_board = GameBoard.new
+      game_board.board = %w(x - - - - - - - -)
+      @game = TicTacToeGame.new(game_board, CheckWinner, ComputerAI)
+      expect(@game.computer_move).to eq([4])
+    end
+
+    it 'plays a corner if the human player played the middle' do
+      game_board = GameBoard.new
+      game_board.board = %w(- - - - x - - - -)
+      @game = TicTacToeGame.new(game_board, CheckWinner, ComputerAI)
+      expect(@game.computer_move).to eq([0])
     end
   end
 end
