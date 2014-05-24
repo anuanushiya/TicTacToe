@@ -14,11 +14,11 @@ class TicTacToeGame
 
   def move(location)
     @game_board.move(location, @current_player)
-    switch_players
+    switch_turn
     @game_board.board
   end
 
-  def switch_players
+  def switch_turn
     @current_player = @current_player == 'x' ? 'o' : 'x'
   end
 

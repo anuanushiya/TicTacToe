@@ -45,6 +45,6 @@ class ComputerAI
   end
 
   def play_side
-    @game_board.move(1, 'o') || @game_board.move(3, 'o') || @game_board.move(5, 'o') || game_board.move(7, 'o')
+    @game_board.move(1, 'o') || @game_board.move(3, 'o') || @game_board.move(5, 'o') || @game_board.move(7, 'o')
   end
 end

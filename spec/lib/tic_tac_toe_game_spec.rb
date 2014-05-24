@@ -65,33 +65,4 @@ describe TicTacToeGame do
       @game = TicTacToeGame.new(game_board, CheckWinner, ComputerAI)
       expect(@game.computer_move).to eq([2])
     end
-
-    it 'returns a move that will allow the computer to win' do
-      game_board = GameBoard.new
-      game_board.board = %w(o - - o x - - - x)
-      @game = TicTacToeGame.new(game_board, CheckWinner, ComputerAI)
-      expect(@game.computer_move).to eq([6])
-    end
-
-    it 'returns a move that will not allow the human player to win' do
-      game_board = GameBoard.new
-      game_board.board = %w(x x - o - - - o -)
-      @game = TicTacToeGame.new(game_board, CheckWinner, ComputerAI)
-      expect(@game.computer_move).to eq([2])
-    end
-
-    it 'plays the center if the human player did not' do
-      game_board = GameBoard.new
-      game_board.board = %w(x - - - - - - - -)
-      @game = TicTacToeGame.new(game_board, CheckWinner, ComputerAI)
-      expect(@game.computer_move).to eq([4])
-    end
-
-    it 'plays a corner if the human player played the middle' do
-      game_board = GameBoard.new
-      game_board.board = %w(- - - - x - - - -)
-      @game = TicTacToeGame.new(game_board, CheckWinner, ComputerAI)
-      expect(@game.computer_move).to eq([0])
-    end
-  end
 end
