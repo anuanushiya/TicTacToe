@@ -23,7 +23,7 @@ class ComputerAI
 
   def computer_win
     winning_move = @game_board.remaining_indices.select do |move|
-      @game_board.move(move, 'o')
+      @game_board.move(move, @turn)
       win = @check_winner.new(@game_board.board, @turn).win?
       return_board
       win
@@ -33,7 +33,7 @@ class ComputerAI
 
   def stop_human_win
     stop_human_move = @game_board.remaining_indices.select do |move|
-      @game_board.move(move, 'x')
+      @game_board.move(move, human_player)
       win = @check_winner.new(@game_board.board, human_player).win?
       return_board
       win
@@ -42,19 +42,19 @@ class ComputerAI
   end
 
   def play_center
-    move = @game_board.move(4, 'o') ? 4 : nil
+    move = @game_board.move(4, @turn) ? 4 : nil
     return_board
     move
   end
 
   def play_corner
-    move = @game_board.move(0, 'o') || @game_board.move(2, 'o') || @game_board.move(6, 'o') || @game_board.move(8, 'o')
+    move = @game_board.move(0, @turn) || @game_board.move(2, @turn) || @game_board.move(6, @turn) || @game_board.move(8, @turn)
     return_board
     move
   end
 
   def play_side
-    move = @game_board.move(1, 'o') || @game_board.move(3, 'o') || @game_board.move(5, 'o') || @game_board.move(7, 'o')
+    move = @game_board.move(1, @turn) || @game_board.move(3, @turn) || @game_board.move(5, @turn) || @game_board.move(7, @turn)
     return_board
     move
   end
