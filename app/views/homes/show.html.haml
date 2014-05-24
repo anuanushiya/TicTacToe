@@ -1,5 +1,6 @@
 %div.col-md-4.col-md-offset-4
-  %div#game_board
+  %h1.center Tic Tac Toe
+  %div#game_board.center
     = render 'game_board'
   %br
-  %div= link_to 'Restart game?', restart_game_path
+  %h2= link_to 'Restart game?', restart_game_path
