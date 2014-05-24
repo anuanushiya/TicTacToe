@@ -11,7 +11,7 @@ class ComputerAI
   end
 
   def best_move
-    computer_win || stop_human_win || play_center || play_corner || play_side
+    computer_win || stop_human_win || play_center || play_corner || play_side || 0
   end
 
   private
@@ -23,7 +23,7 @@ class ComputerAI
       return_board
       win
     end
-    winning_move.empty? ? nil : winning_move
+    winning_move.empty? ? nil : winning_move.first
   end
 
   def stop_human_win
@@ -33,11 +33,11 @@ class ComputerAI
       return_board
       win
     end
-    stop_human_move.empty? ? nil : stop_human_move
+    stop_human_move.empty? ? nil : stop_human_move.first
   end
 
   def play_center
-    move = @game_board.move(4, 'o') ? [4] : nil
+    move = @game_board.move(4, 'o') ? 4 : nil
     return_board
     move
   end

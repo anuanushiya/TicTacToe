@@ -22,7 +22,7 @@ class TicTacToeGame
     @current_player = @current_player == 'x' ? 'o' : 'x'
   end
 
-  def win?(player)
+  def win?(player = previous_player)
     @check_winner.new(board, player).win?
   end
 
@@ -33,5 +33,13 @@ class TicTacToeGame
 
   def computer_move
     @computer_ai.new(@game_board, 'o', @check_winner).best_move
+  end
+
+  def previous_player
+    @current_player == 'x' ? 'o' : 'x'
+  end
+
+  def remaining_moves
+    @game_board.remaining_indices_count
   end
 end
