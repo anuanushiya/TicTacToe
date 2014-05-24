@@ -33,7 +33,7 @@ class TicTacToeGame
 
   def computer_move
     @old_board = board.dup
-    computer_win(@old_board) || stop_human_win(@old_board) || play_center || play_corner
+    computer_win(@old_board) || stop_human_win(@old_board) || play_center || play_corner || play_side
   end
 
   private
@@ -64,5 +64,9 @@ class TicTacToeGame
 
   def play_corner
     @game_board.move(0, 'o') || @game_board.move(2, 'o') || @game_board.move(6, 'o') || @game_board.move(8, 'o')
+  end
+
+  def play_side
+    @game_board.move(1, 'o') || @game_board.move(3, 'o') || @game_board.move(5, 'o') || game_board.move(7, 'o')
   end
 end

@@ -7,7 +7,7 @@ class GameBoard
   def move(location, player)
     if @board[location] == '-'
     @board[location] = player
-    @board
+    [location]
     else
       nil
     end
