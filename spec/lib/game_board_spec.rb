@@ -10,7 +10,7 @@ describe GameBoard do
   describe '#move' do
     it 'returns the location if the move is valid' do
       game = GameBoard.new
-      expect(game.move(0, 'x')).to eq([0])
+      expect(game.move(0, 'x')).to eq(0)
     end
 
     it 'returns the nil if the move is valid' do

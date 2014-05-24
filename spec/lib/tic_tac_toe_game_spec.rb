@@ -63,7 +63,7 @@ describe TicTacToeGame do
       game_board = GameBoard.new
       game_board.board = %w(o o - x x - - - -)
       @game = TicTacToeGame.new(game_board, CheckWinner, ComputerAI)
-      expect(@game.computer_move).to eq([2])
+      expect(@game.computer_move).to eq(2)
     end
   end
 end
