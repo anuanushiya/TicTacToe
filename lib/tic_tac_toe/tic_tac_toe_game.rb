@@ -1,7 +1,7 @@
 class TicTacToeGame
   attr_accessor :current_player
 
-  def initialize(game_board, check_winner, computer_ai)
+  def initialize(game_board = GameBoard.new, check_winner = CheckWinner, computer_ai = ComputerAI)
     @game_board = game_board
     @check_winner = check_winner
     @computer_ai = computer_ai
