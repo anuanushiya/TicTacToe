@@ -1,5 +1,5 @@
 class HomesController < ApplicationController
-  after_action :computer_move
+  after_action :computer_move, only: [:update_game_board]
 
   def show
   end
@@ -12,7 +12,7 @@ class HomesController < ApplicationController
 
   def update_game_board
     GAME.move(params[:id][/\d/].to_i)
-    redirect_to root_path
+    redirect_to root_path and return
   end
 
   def restart_game
