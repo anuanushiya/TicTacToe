@@ -7,6 +7,19 @@ describe GameBoard do
     end
   end
 
+  describe '#move' do
+    it 'returns the location if the move is valid' do
+      game = GameBoard.new
+      expect(game.move(0, 'x')).to eq([0])
+    end
+
+    it 'returns the nil if the move is valid' do
+      game = GameBoard.new
+      game.board = %w(x - - - - - - - -)
+      expect(game.move(0, 'o')).to eq(nil)
+    end
+  end
+
   describe '#remaining_indices' do
     it 'returns the remaining available locations for a move' do
       game = GameBoard.new

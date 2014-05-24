@@ -23,7 +23,7 @@ class TicTacToeGame
   end
 
   def win?(player)
-    CheckWinner.new(board, player).win?
+    @check_winner.new(board, player).win?
   end
 
   def clear
