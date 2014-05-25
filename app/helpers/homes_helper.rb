@@ -8,14 +8,10 @@ module HomesHelper
   end
 
   def disabled?(box, game)
-    if game.current_player == 'o'
+    if game.current_player == 'o' || win(game) || box != '-'
       true
     else
-      if win(game)
-        true
-      else
-        box == '-' ? false : true
-      end
+      false
     end
   end
 
