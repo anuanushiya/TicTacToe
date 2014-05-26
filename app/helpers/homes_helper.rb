@@ -1,6 +1,6 @@
 module HomesHelper
   def win(game)
-    game.win? ? "Congratulations #{game.previous_player.upcase}! You've won!" : check_possible_moves(game)
+    game.win? ? "Congratulations #{game.previous_turn.upcase}! You've won!" : check_possible_moves(game)
   end
 
   def check_possible_moves(game)
@@ -8,7 +8,7 @@ module HomesHelper
   end
 
   def disabled?(box, game)
-    if game.current_player == 'o' || win(game) || box != '-'
+    if game.current_turn == 'o' || win(game) || box != '-'
       true
     else
       false

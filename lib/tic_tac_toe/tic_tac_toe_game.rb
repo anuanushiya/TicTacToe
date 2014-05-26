@@ -1,11 +1,13 @@
 class TicTacToeGame
-  attr_accessor :current_player
+  attr_accessor :current_turn
+  X = 'x'
+  O = 'o'
 
   def initialize(game_board = GameBoard.new, check_winner = CheckWinner, computer_ai = ComputerAI)
     @game_board = game_board
     @check_winner = check_winner
     @computer_ai = computer_ai
-    @current_player = 'x'
+    @current_turn = X
   end
 
   def board
@@ -13,21 +15,21 @@ class TicTacToeGame
   end
 
   def move(location)
-    @game_board.move(location, @current_player)
+    @game_board.move(location, @current_turn)
     switch_turn
     @game_board.board
   end
 
-  def win?(player = previous_player)
-    @check_winner.new(board, player).win?
+  def win?(turn = previous_turn)
+    @check_winner.new(board, turn).win?
   end
 
   def computer_move
-    @computer_ai.new(@game_board, 'o', @check_winner).best_move
+    @computer_ai.new(@game_board, O, @check_winner).best_move
   end
 
-  def previous_player
-    @current_player == 'x' ? 'o' : 'x'
+  def previous_turn
+    @current_turn == X ? O : X
   end
 
   def remaining_moves
@@ -36,12 +38,12 @@ class TicTacToeGame
 
   def clear
     @game_board = GameBoard.new
-    @current_player = 'x'
+    @current_turn = X
   end
 
   private
 
   def switch_turn
-    @current_player = @current_player == 'x' ? 'o' : 'x'
+    @current_turn = @current_turn == X ? O : X
   end
 end

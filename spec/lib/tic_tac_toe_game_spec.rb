@@ -18,7 +18,7 @@ describe TicTacToeGame do
   end
 
   describe '#move' do
-    it "returns %w(x - - - - - - - -) when move(0) is called" do
+    it 'returns %w(x - - - - - - - -) when move(0) is called' do
       expect(@game.move(0)).to eq(%w(x - - - - - - - -))
     end
 
@@ -27,7 +27,7 @@ describe TicTacToeGame do
       expect(@game.move(1)).to eq(%w(x o - - - - - - -))
     end
 
-    it "returns the same board if a location has already been used" do
+    it 'returns the same board if a location has already been used' do
       @game.move(0)
       expect(@game.move(0)).to eq(%w(x - - - - - - - -))
     end
@@ -43,7 +43,7 @@ describe TicTacToeGame do
     it 'returns true when o wins' do
       game_board = double('GameBoard', board: %w(o x x o - o o x -))
       @game = TicTacToeGame.new(game_board, CheckWinner, ComputerAI)
-      @game.current_player = 'o'
+      @game.current_turn = 'o'
       expect(@game.win?('o')).to eq(true)
     end
   end

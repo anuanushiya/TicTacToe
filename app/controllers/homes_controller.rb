@@ -5,7 +5,7 @@ class HomesController < ApplicationController
   end
 
   def computer_move
-    if GAME.current_player == 'o'
+    if GAME.current_turn == 'o'
       GAME.move(GAME.computer_move)
     end
   end

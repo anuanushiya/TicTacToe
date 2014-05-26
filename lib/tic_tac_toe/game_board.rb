@@ -4,9 +4,9 @@ class GameBoard
     @board = Array.new(9, '-')
   end
 
-  def move(location, player)
+  def move(location, turn)
     if @board[location] == '-'
-      @board[location] = player
+      @board[location] = turn
       location
     else
       nil

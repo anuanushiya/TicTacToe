@@ -1,5 +1,8 @@
 class ComputerAI
   CORNERS = [0, 2, 6, 8]
+  X = 'x'
+  O = 'o'
+
   def initialize(game_board, turn, check_winner)
     @game_board = game_board
     @old_board = game_board.board.dup
@@ -8,7 +11,7 @@ class ComputerAI
   end
 
   def human_player
-    @turn == 'o' ? 'x' : 'o'
+    @turn == O ? X : O
   end
 
   def best_move

@@ -1,7 +1,7 @@
 class CheckWinner
-  def initialize(board, player)
+  def initialize(board, turn)
     @board = board.each_slice(3).to_a
-    @player = player
+    @turn = turn
   end
 
   def win?
@@ -9,15 +9,15 @@ class CheckWinner
   end
 
   def horizontal_win?
-    @board.any? { |row| row.all? { |val| val == @player } }
+    @board.any? { |row| row.all? { |val| val == @turn } }
   end
 
   def vertical_win?
-    @board.transpose.any? { |row| row.all? { |val| val == @player } }
+    @board.transpose.any? { |row| row.all? { |val| val == @turn } }
   end
 
   def diagonal_win?
-    @board.map.with_index.all? { |row, ind| row[ind] == @player } ||
-      @board.map.with_index.all? { |row, ind| row[2 - ind] == @player }
+    @board.map.with_index.all? { |row, ind| row[ind] == @turn } ||
+      @board.map.with_index.all? { |row, ind| row[2 - ind] == @turn }
   end
 end
