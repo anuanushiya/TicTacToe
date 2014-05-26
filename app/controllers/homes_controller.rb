@@ -1,14 +1,14 @@
 class HomesController < ApplicationController
   after_action :computer_move, only: [:update_game_board]
 
-  def show
-  end
+ def show
+ end
 
-  def computer_move
-    if GAME.current_turn == 'o'
-      GAME.move(GAME.computer_move)
-    end
-  end
+   def computer_move
+     if GAME.current_turn == 'o'
+       GAME.move(GAME.computer_move)
+     end
+   end
 
   def update_game_board
     GAME.move(params[:id][/\d/].to_i)

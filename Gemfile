@@ -13,6 +13,7 @@ gem 'bootstrap-sass'
 group :test, :development do
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'jasmine-rails'
 end
 
 group :doc do

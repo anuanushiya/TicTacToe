@@ -1,2 +1,4 @@
+= hidden_field_tag :turn, GAME.current_turn
+= hidden_field_tag :computer_move, GAME.computer_move
 - [:one, :two, :three].each do |row|
   = tic_tac_toe_row(GAME, row)

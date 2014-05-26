@@ -14,5 +14,15 @@ describe 'Homes Pages' do
     it 'displays nine buttons with dashes' do
       expect(page).to have_selector("input[type=submit][value='-']", count: 9)
     end
+
+    describe 'hidden fields' do
+      it 'has a hidden field for turn' do
+        expect(page).to have_selector("input[type=hidden][id='turn']")
+      end
+
+      it 'has a hidden field for computer_move' do
+        expect(page).to have_selector("input[type=hidden][id='computer_move']")
+      end
+    end
   end
 end
