@@ -16,7 +16,9 @@ class ComputerAI
   end
 
   def best_move
-    if CORNERS.map { |ind| @game_board.board[ind] }.any? { |square| square == human_player }
+    if @game_board.board[8] == X && @game_board.board[4] == X
+      play_to_win || play_to_stop_human_win || play_center || play_corner || play_side || 0
+    elsif CORNERS.map { |ind| @game_board.board[ind] }.any? { |square| square == human_player }
       play_to_win || play_to_stop_human_win || play_center || play_side || play_corner || 0
     else
       play_to_win || play_to_stop_human_win || play_center || play_corner || play_side || 0
