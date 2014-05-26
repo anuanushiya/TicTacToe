@@ -1,5 +1,6 @@
 class ComputerAI
   CORNERS = [0, 2, 6, 8]
+  SIDES = [3, 1, 5, 7]
   X = 'x'
   O = 'o'
 
@@ -51,13 +52,13 @@ class ComputerAI
   end
 
   def play_corner
-    move = @game_board.move(0, @turn) || @game_board.move(2, @turn) || @game_board.move(6, @turn) || @game_board.move(8, @turn)
+    move = CORNERS.select { |ind| @game_board.move(ind, @turn) }.first
     rollback_board
     move
   end
 
   def play_side
-    move = @game_board.move(1, @turn) || @game_board.move(3, @turn) || @game_board.move(5, @turn) || @game_board.move(7, @turn)
+    move = SIDES.select { |ind| @game_board.move(ind, @turn) }.first
     rollback_board
     move
   end
