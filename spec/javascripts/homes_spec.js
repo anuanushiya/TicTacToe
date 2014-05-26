@@ -1,6 +1,7 @@
 describe('homes', function(){
-  it('does something', function() {
-    expect(2 + 2).toBe(4);
-
+  loadFixtures('game_board.html');
+  it('removes disabled from a button', function() {
+    $(".box_4 input[type='submit']").attr('disabled', 'disabled');
+    expect(remove_disabled($(".box_4 input[type='submit']"))).not.toBeDisabled();
   });
 });
