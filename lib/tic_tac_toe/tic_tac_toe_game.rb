@@ -1,5 +1,6 @@
 class TicTacToeGame
   attr_accessor :current_turn
+  attr_reader :check_winner, :computer_ai
   X = 'x'
   O = 'o'
 
@@ -21,11 +22,11 @@ class TicTacToeGame
   end
 
   def win?(turn = previous_turn)
-    @check_winner.new(board, turn).win?
+    check_winner.new(board, turn).win?
   end
 
   def computer_move
-    @computer_ai.new(@game_board, O, @check_winner).best_move
+    computer_ai.new(@game_board, O, check_winner).best_move
   end
 
   def previous_turn

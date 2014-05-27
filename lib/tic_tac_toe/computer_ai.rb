@@ -1,4 +1,5 @@
 class ComputerAI
+  attr_reader :game_board, :turn, :check_winner, :old_board
   CORNERS = [0, 2, 6, 8]
   SIDES = [3, 1, 5, 7]
   X = 'x'
@@ -12,25 +13,31 @@ class ComputerAI
   end
 
   def human_player
-    @turn == O ? X : O
+    turn == O ? X : O
   end
 
   def best_move
-    if @game_board.board[8] == X && @game_board.board[4] == X
+    if four_and_eight? || includes_side?
       play_to_win || play_to_stop_human_win || play_center || play_corner || play_side || 0
-    elsif CORNERS.map { |ind| @game_board.board[ind] }.any? { |square| square == human_player }
-      play_to_win || play_to_stop_human_win || play_center || play_side || play_corner || 0
     else
-      play_to_win || play_to_stop_human_win || play_center || play_corner || play_side || 0
+      play_to_win || play_to_stop_human_win || play_center || play_side || play_corner || 0
     end
   end
 
   private
+  
+  def includes_side?
+    SIDES.push(4).map { |ind| game_board.board[ind] }.any? { |square| square == human_player }
+  end
+
+  def four_and_eight?
+    game_board.board[8] == X && game_board.board[4] == X
+  end
 
   def play_to_win
-    winning_move = @game_board.remaining_indices.select do |move|
-      @game_board.move(move, @turn)
-      win = @check_winner.new(@game_board.board, @turn).win?
+    winning_move = game_board.remaining_indices.select do |move|
+      game_board.move(move, turn)
+      win = check_winner.new(game_board.board, turn).win?
       rollback_board
       win
     end
@@ -38,9 +45,9 @@ class ComputerAI
   end
 
   def play_to_stop_human_win
-    stop_human_move = @game_board.remaining_indices.select do |move|
-      @game_board.move(move, human_player)
-      win = @check_winner.new(@game_board.board, human_player).win?
+    stop_human_move = game_board.remaining_indices.select do |move|
+      game_board.move(move, human_player)
+      win = check_winner.new(game_board.board, human_player).win?
       rollback_board
       win
     end
@@ -48,24 +55,24 @@ class ComputerAI
   end
 
   def play_center
-    move = @game_board.move(4, @turn) ? 4 : nil
+    move = game_board.move(4, turn) ? 4 : nil
     rollback_board
     move
   end
 
   def play_corner
-    move = CORNERS.select { |ind| @game_board.move(ind, @turn) }.first
+    move = CORNERS.select { |ind| game_board.move(ind, turn) }.first
     rollback_board
     move
   end
 
   def play_side
-    move = SIDES.select { |ind| @game_board.move(ind, @turn) }.first
+    move = SIDES.select { |ind| game_board.move(ind, turn) }.first
     rollback_board
     move
   end
 
   def rollback_board
-    @game_board.board = @old_board.dup
+    game_board.board = old_board.dup
   end
 end
