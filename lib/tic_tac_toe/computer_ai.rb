@@ -17,7 +17,9 @@ class ComputerAI
   end
 
   def best_move
-    if four_and_eight? || includes_side?
+    if two_and_seven? || zero_and_seven?
+      play_to_win || play_to_stop_human_win || play_center || play_side || play_corner || 0
+    elsif four_and_eight? || includes_side?
       play_to_win || play_to_stop_human_win || play_center || play_corner || play_side || 0
     else
       play_to_win || play_to_stop_human_win || play_center || play_side || play_corner || 0
@@ -31,7 +33,15 @@ class ComputerAI
   end
 
   def four_and_eight?
-    game_board.board[8] == X && game_board.board[4] == X
+    game_board.board[8] == human_player && game_board.board[4] == human_player
+  end
+
+  def two_and_seven?
+    game_board.board[2] == human_player && game_board.board[7] == human_player
+  end
+
+  def zero_and_seven?
+    game_board.board[0] == human_player && game_board.board[7] == human_player
   end
 
   def play_to_win
