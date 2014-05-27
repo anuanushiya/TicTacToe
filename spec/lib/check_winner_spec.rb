@@ -4,36 +4,36 @@ describe CheckWinner do
   describe 'horizontal_win?' do
     it 'returns true when player x wins horizontally' do
       board = CheckWinner.new(%w(x x x - - - - - -), 'x')
-      expect(board.horizontal_win?).to be_true
+      expect(board.send(:horizontal_win?)).to be_true
     end
 
     it 'returns true when player o wins horizontally' do
       board = CheckWinner.new(%w(- - - o o o - - -), 'o')
-      expect(board.horizontal_win?).to be_true
+      expect(board.send(:horizontal_win?)).to be_true
     end
   end
 
   describe 'vertical_win?' do
     it 'returns true when player x wins vertically' do
       board = CheckWinner.new(%w(x - - x - - x - -), 'x')
-      expect(board.vertical_win?).to be_true
+      expect(board.send(:vertical_win?)).to be_true
     end
 
     it 'returns true when player o wins vertically' do
       board = CheckWinner.new(%w(- o - - o - - o -), 'o')
-      expect(board.vertical_win?).to be_true
+      expect(board.send(:vertical_win?)).to be_true
     end
   end
 
   describe 'diagonal_win?' do
     it 'returns true when player x wins diagonally' do
       board = CheckWinner.new(%w(x - - - x - - - x), 'x')
-      expect(board.diagonal_win?).to be_true
+      expect(board.send(:diagonal_win?)).to be_true
     end
 
     it 'returns true when player o wins diagonally' do
       board = CheckWinner.new(%w(- - o - o - o - -), 'o')
-      expect(board.diagonal_win?).to be_true
+      expect(board.send(:diagonal_win?)).to be_true
     end
   end
 

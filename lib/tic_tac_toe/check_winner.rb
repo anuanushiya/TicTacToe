@@ -10,6 +10,8 @@ class CheckWinner
     horizontal_win? || vertical_win? || diagonal_win?
   end
 
+  private
+
   def horizontal_win?
     board.any? { |row| row.all? { |val| val == turn } }
   end

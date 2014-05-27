@@ -25,7 +25,7 @@ class ComputerAI
   end
 
   private
-  
+
   def includes_side?
     SIDES.push(4).map { |ind| game_board.board[ind] }.any? { |square| square == human_player }
   end
