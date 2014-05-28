@@ -18,7 +18,7 @@ class ComputerAI
   end
 
   def best_move
-    play_to_win || play_to_stop_human_win || play_fork || block_fork || play_center || play_corner || play_side || 0
+    play_to_win || play_to_stop_human_win || play_fork(turn) || block_fork(human_player) || play_center || play_corner || play_side || 0
   end
 
   def board
@@ -27,17 +27,8 @@ class ComputerAI
 
   private
 
-  def play_fork
-    fork_pos = fork_position(turn)
-    if fork_pos
-      move = game_board.move(fork_pos, turn) ? fork_pos : nil
-      rollback_board
-      move
-    end
-  end
-
-  def block_fork
-    fork_pos = fork_position(human_player)
+  def play_fork(player)
+    fork_pos = fork_position(player)
     if fork_pos
       move = game_board.move(fork_pos, turn) ? fork_pos : nil
       rollback_board
@@ -86,4 +77,6 @@ class ComputerAI
   def rollback_board
     game_board.board = old_board.dup
   end
+
+  alias :block_fork :play_fork
 end
