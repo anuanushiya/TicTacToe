@@ -51,6 +51,8 @@ describe TicTacToeGame do
   describe '#clear' do
     it 'resets the game board and sets the current_user to x' do
       game_board = double('GameBoard', board: %w(o x x o - o o x -))
+      game_board = GameBoard.new
+      game_board.board = %w(o x x o - o o x -)
       game = TicTacToeGame.new(game_board, CheckWinner, ComputerAI)
       expect(game.board).to eq(%w(o x x o - o o x -))
       game.clear

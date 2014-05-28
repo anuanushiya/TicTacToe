@@ -1,5 +1,5 @@
 class TicTacToeGame
-  attr_accessor :current_turn
+  attr_accessor :current_turn, :game_board
   attr_reader :check_winner, :computer_ai
   X = 'x'
   O = 'o'
@@ -12,12 +12,12 @@ class TicTacToeGame
   end
 
   def board
-    @game_board.board
+    game_board.board
   end
 
   def cycle_through_moves
     all_moves = [*0..8].permutation.to_a
-    all_moves.first(5000).map do |numbers|
+    all_moves.first(8000).map.with_index do |numbers, ind|
       numbers.each_with_object({}) do |num, obj| 
         if board.count('-') == 0
           clear
@@ -33,6 +33,7 @@ class TicTacToeGame
         else
           move(computer_move)
           if win?
+            p "#{board} : #{ind}"
             clear
             break nil
           end
@@ -43,10 +44,10 @@ class TicTacToeGame
   end
 
   def move(location)
-    if @game_board.move(location, @current_turn)
+    if game_board.move(location, @current_turn)
       switch_turn
     end
-    @game_board.board
+    game_board.board
   end
 
   def win?(turn = previous_turn)
@@ -54,7 +55,7 @@ class TicTacToeGame
   end
 
   def computer_move
-    computer_ai.new(@game_board, O, check_winner).best_move
+    computer_ai.new(game_board, O, check_winner).best_move
   end
 
   def previous_turn
@@ -62,11 +63,11 @@ class TicTacToeGame
   end
 
   def remaining_moves
-    @game_board.remaining_indices_count
+    game_board.remaining_indices_count
   end
 
   def clear
-    @game_board = GameBoard.new
+    game_board.board = Array.new(9, '-')
     @current_turn = X
   end
 
