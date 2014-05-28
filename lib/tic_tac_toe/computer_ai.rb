@@ -1,10 +1,9 @@
 class ComputerAI
   include Forks
+  include Constants
   attr_reader :game_board, :turn, :check_winner, :old_board
   CORNERS = [0, 2, 6, 8]
   SIDES = [3, 1, 5, 7]
-  X = 'x'
-  O = 'o'
 
   def initialize(game_board, turn, check_winner)
     @game_board = game_board

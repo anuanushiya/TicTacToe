@@ -1,8 +1,7 @@
 class TicTacToeGame
   attr_accessor :current_turn, :game_board
   attr_reader :check_winner, :computer_ai
-  X = 'x'
-  O = 'o'
+  include Constants
 
   def initialize(game_board = GameBoard.new, check_winner = CheckWinner, computer_ai = ComputerAI)
     @game_board = game_board
