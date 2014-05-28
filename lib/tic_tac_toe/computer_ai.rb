@@ -78,5 +78,5 @@ class ComputerAI
     game_board.board = old_board.dup
   end
 
-  alias :block_fork :play_fork
+  alias_method :block_fork, :play_fork
 end
