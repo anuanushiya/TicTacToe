@@ -1,4 +1,5 @@
 class ComputerAI
+  include Forks
   attr_reader :game_board, :turn, :check_winner, :old_board
   CORNERS = [0, 2, 6, 8]
   SIDES = [3, 1, 5, 7]
@@ -17,35 +18,31 @@ class ComputerAI
   end
 
   def best_move
-    if five_and_seven? || two_and_seven? || zero_and_seven? || four_and_eight?
-      play_to_win || play_to_stop_human_win || play_center || play_reverse_corner || play_side || 0
-    elsif includes_side?
-      play_to_win || play_to_stop_human_win || play_center || play_corner || play_side || 0
-    else
-      play_to_win || play_to_stop_human_win || play_center || play_side || play_corner || 0
-    end
+    play_to_win || play_to_stop_human_win || play_fork || block_fork || play_center || play_corner || play_side || 0
   end
 
   private
 
+  def play_fork
+    fork_pos = fork_position(turn)
+    if fork_pos
+      move = game_board.move(fork_pos, turn) ? fork_pos : nil
+      rollback_board
+      move
+    end
+  end
+
+  def block_fork
+    fork_pos = fork_position(human_player)
+    if fork_pos
+      move = game_board.move(fork_pos, turn) ? fork_pos : nil
+      rollback_board
+      move
+    end
+  end
+
   def includes_side?
     SIDES.push(4).map { |ind| game_board.board[ind] }.any? { |square| square == human_player }
-  end
-
-  def four_and_eight?
-    game_board.board[8] == human_player && game_board.board[4] == human_player
-  end
-
-  def two_and_seven?
-    game_board.board[2] == human_player && game_board.board[7] == human_player
-  end
-
-  def five_and_seven?
-    game_board.board[5] == human_player && game_board.board[7] == human_player
-  end
-
-  def zero_and_seven?
-    game_board.board[0] == human_player && game_board.board[7] == human_player
   end
 
   def play_to_win
@@ -85,7 +82,6 @@ class ComputerAI
     rollback_board
     move
   end
-
 
   def play_side
     move = SIDES.select { |ind| game_board.move(ind, turn) }.first

@@ -40,7 +40,7 @@ class TicTacToeGame
 
   def clear
     game_board.board = Array.new(9, '-')
-    current_turn = X
+    @current_turn = X
   end
 
   private
