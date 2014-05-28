@@ -21,6 +21,10 @@ class ComputerAI
     play_to_win || play_to_stop_human_win || play_fork || block_fork || play_center || play_corner || play_side || 0
   end
 
+  def board
+    game_board.board
+  end
+
   private
 
   def play_fork
@@ -44,7 +48,7 @@ class ComputerAI
   def play_to_win
     winning_move = game_board.remaining_indices.select do |move|
       game_board.move(move, turn)
-      win = check_winner.new(game_board.board, turn).win?
+      win = check_winner.new(board, turn).win?
       rollback_board
       win
     end
@@ -54,7 +58,7 @@ class ComputerAI
   def play_to_stop_human_win
     stop_human_move = game_board.remaining_indices.select do |move|
       game_board.move(move, human_player)
-      win = check_winner.new(game_board.board, human_player).win?
+      win = check_winner.new(board, human_player).win?
       rollback_board
       win
     end

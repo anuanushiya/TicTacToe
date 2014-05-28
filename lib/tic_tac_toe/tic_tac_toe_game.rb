@@ -16,9 +16,7 @@ class TicTacToeGame
   end
 
   def move(location)
-    if game_board.move(location, current_turn)
-      switch_turn
-    end
+    switch_turn if game_board.move(location, current_turn)
     game_board.board
   end
 
