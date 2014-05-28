@@ -15,36 +15,8 @@ class TicTacToeGame
     game_board.board
   end
 
-  def cycle_through_moves
-    all_moves = [*0..8].permutation.to_a
-    all_moves.first(8000).map.with_index do |numbers, ind|
-      numbers.each_with_object({}) do |num, obj| 
-        if board.count('-') == 0
-          clear
-          break nil
-        end
-        if current_turn == 'x'
-          move(num)
-          if win?
-            obj[board] = previous_turn
-            clear
-            break obj
-          end
-        else
-          move(computer_move)
-          if win?
-            p "#{board} : #{ind}"
-            clear
-            break nil
-          end
-          redo
-        end
-      end
-    end.compact
-  end
-
   def move(location)
-    if game_board.move(location, @current_turn)
+    if game_board.move(location, current_turn)
       switch_turn
     end
     game_board.board
@@ -59,7 +31,7 @@ class TicTacToeGame
   end
 
   def previous_turn
-    @current_turn == X ? O : X
+    current_turn == X ? O : X
   end
 
   def remaining_moves
@@ -68,12 +40,12 @@ class TicTacToeGame
 
   def clear
     game_board.board = Array.new(9, '-')
-    @current_turn = X
+    current_turn = X
   end
 
   private
 
   def switch_turn
-    @current_turn = @current_turn == X ? O : X
+    @current_turn = current_turn == X ? O : X
   end
 end
