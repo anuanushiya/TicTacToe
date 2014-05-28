@@ -1,4 +1,4 @@
-describe('homes', function(){
+describe('game', function(){
   beforeEach(function() {
     loadFixtures('game_board.html');
     jasmine.clock().install();
