@@ -15,9 +15,37 @@ class TicTacToeGame
     @game_board.board
   end
 
+  def cycle_through_moves
+    all_moves = [*0..8].permutation.to_a
+    all_moves.first(5000).map do |numbers|
+      numbers.each_with_object({}) do |num, obj| 
+        if board.count('-') == 0
+          clear
+          break nil
+        end
+        if current_turn == 'x'
+          move(num)
+          if win?
+            obj[board] = previous_turn
+            clear
+            break obj
+          end
+        else
+          move(computer_move)
+          if win?
+            clear
+            break nil
+          end
+          redo
+        end
+      end
+    end.compact
+  end
+
   def move(location)
-    @game_board.move(location, @current_turn)
-    switch_turn
+    if @game_board.move(location, @current_turn)
+      switch_turn
+    end
     @game_board.board
   end
 

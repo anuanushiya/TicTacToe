@@ -17,9 +17,9 @@ class ComputerAI
   end
 
   def best_move
-    if two_and_seven? || zero_and_seven?
-      play_to_win || play_to_stop_human_win || play_center || play_side || play_corner || 0
-    elsif four_and_eight? || includes_side?
+    if five_and_seven? || two_and_seven? || zero_and_seven? || four_and_eight?
+      play_to_win || play_to_stop_human_win || play_center || play_reverse_corner || play_side || 0
+    elsif includes_side?
       play_to_win || play_to_stop_human_win || play_center || play_corner || play_side || 0
     else
       play_to_win || play_to_stop_human_win || play_center || play_side || play_corner || 0
@@ -38,6 +38,10 @@ class ComputerAI
 
   def two_and_seven?
     game_board.board[2] == human_player && game_board.board[7] == human_player
+  end
+
+  def five_and_seven?
+    game_board.board[5] == human_player && game_board.board[7] == human_player
   end
 
   def zero_and_seven?
@@ -75,6 +79,13 @@ class ComputerAI
     rollback_board
     move
   end
+
+  def play_reverse_corner
+    move = CORNERS.reverse.select { |ind| game_board.move(ind, turn) }.first
+    rollback_board
+    move
+  end
+
 
   def play_side
     move = SIDES.select { |ind| game_board.move(ind, turn) }.first
