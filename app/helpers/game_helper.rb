@@ -1,4 +1,4 @@
-module HomesHelper
+module GameHelper
   def win(game)
     game.win? ? "Congratulations #{game.previous_turn.upcase}! You've won!" : check_possible_moves(game)
   end

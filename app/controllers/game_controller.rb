@@ -1,4 +1,4 @@
-class HomesController < ApplicationController
+class GameController < ApplicationController
   def show
   end
 
