@@ -41,11 +41,18 @@ describe ComputerAI do
   end
   
   describe '#fork_position' do
-    it 'returns a position if a fork is open' do
+    it 'returns a position if a possible fork is open' do
       game_board = GameBoard.new
       game_board.board = %w(- x - o x x - o -)
       computer = ComputerAI.new(game_board, 'o', CheckWinner)
       expect(computer.fork_position('o')).to eq(6)
+    end
+
+    it 'returns a position to block if a possible fork is open' do
+      game_board = GameBoard.new
+      game_board.board = %w(- - x - - - o x -)
+      computer = ComputerAI.new(game_board, 'o', CheckWinner)
+      expect(computer.fork_position('x')).to eq(8)
     end
   end
 end

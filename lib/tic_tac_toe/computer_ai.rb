@@ -41,10 +41,6 @@ class ComputerAI
     end
   end
 
-  def includes_side?
-    SIDES.push(4).map { |ind| game_board.board[ind] }.any? { |square| square == human_player }
-  end
-
   def play_to_win
     winning_move = game_board.remaining_indices.select do |move|
       game_board.move(move, turn)
@@ -73,12 +69,6 @@ class ComputerAI
 
   def play_corner
     move = CORNERS.select { |ind| game_board.move(ind, turn) }.first
-    rollback_board
-    move
-  end
-
-  def play_reverse_corner
-    move = CORNERS.reverse.select { |ind| game_board.move(ind, turn) }.first
     rollback_board
     move
   end

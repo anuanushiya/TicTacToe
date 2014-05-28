@@ -1,4 +1,10 @@
 module Forks
+  def fork_position(player)
+    fork_sides(player) || fork_corner_side(player) || fork_corners(player)
+  end
+
+  private
+
   def fork_sides(player)
     sides = {
       [1,3] => 0,
@@ -35,9 +41,5 @@ module Forks
     corner_sides.select do |(a, b), position|
       game_board.board[a] == player && game_board.board[b] == player
     end.values.first
-  end
-
-  def fork_position(player)
-    fork_sides(player) || fork_corner_side(player) || fork_corners(player)
   end
 end
