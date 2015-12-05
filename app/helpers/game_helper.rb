@@ -13,9 +13,9 @@ module GameHelper
 
   def tic_tac_toe_row(game, row)
     rows = { one: [*0..2], two: [*3..5], three: [*6..8] }
-    game.board.each_with_index.inject("<div id='row_#{row}'>") do |acc, (box, ind)|
-      sub_tag = button_to box, { action: 'update_game_board', id: "button_#{ind}" }, disabled: disabled?(box, game)
-      acc += rows[row].include?(ind) ? content_tag(:div, sub_tag, class: "grid box_#{ind}") : ''
+    game.board.each_with_index.inject("<div id='row-#{row}'>") do |acc, (box, ind)|
+      sub_tag = button_to box, { action: 'update_game_board', id: "button-#{ind}" }, form_class: 'button-to', disabled: disabled?(box, game)
+      acc += rows[row].include?(ind) ? content_tag(:div, sub_tag, class: "grid box-#{ind}") : ''
     end.html_safe
   end
 end

@@ -11,7 +11,7 @@ input {
   padding: 10px;
 }
 
-#row_one {
+#row-one {
   margin-top: 50px;
 }
 
@@ -21,33 +21,38 @@ input {
   text-align: center;
 }
 
+.button-to {
+  vertical-align: middle;
+  line-height: 100%;
+}
+
 // Tic Tac Toe Grid
-.v_bars {
-  border-right: $border_size;
-  border-left: $border_size;
+.v-bars {
+  border-right: $border-size;
+  border-left: $border-size;
 }
 
-.h_bars {
-  border-top: $border_size;
-  border-bottom: $border_size;
+.h-bars {
+  border-top: $border-size;
+  border-bottom: $border-size;
 }
 
-.box_1 {
-  @extend .v_bars;
+.box-1 {
+  @extend .v-bars;
 }
 
-.box_3, .box_5 {
-  @extend .h_bars;
+.box-3, .box-5 {
+  @extend .h-bars;
 }
 
-.box_4 {
-  @extend .v_bars, .h_bars
+.box-4 {
+  @extend .v-bars, .h-bars
 }
 
-.box_7 {
-  @extend .v_bars
+.box-7 {
+  @extend .v-bars
 }
 
-.winner {
+#winner {
   color: green;
 }

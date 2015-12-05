@@ -15,6 +15,6 @@ function computer_play(button) {
 
 $(document).ready(function() {
   var computer_move = $('#computer_move').val();
-  var computer_button = $(String.concat('.box_', computer_move, " input[type='submit']"));
+  var computer_button = $(String.concat('.box-', computer_move, " input[type='submit']"));
   computer_play(computer_button);
 });

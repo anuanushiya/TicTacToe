@@ -3,5 +3,5 @@
   %div#game_board.center
     = render 'game_board'
   %br
-  %h2.winner= win(GAME)
+  %h2#winner= win(GAME)
   %h2= link_to 'Restart game?', restart_game_path
